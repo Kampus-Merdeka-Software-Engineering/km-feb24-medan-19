@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Team 19 Medan</title>
+    <link rel="stylesheet" href="coba.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp">
+</head>
+<body>
+    <div class="container">
+        <aside>
+            <div class="top">
+                <div class="logo">
+                    <img src="./Image/logo-removebg-preview.png">
+                    <h2 class="text-muted">COFFEE <span class="danger">GOONS</span></h2>
+                </div>
+                <div class="close" id="close-button">
+                    <span class="material-icons-sharp">close</span>
+                </div>
+            </div>
+            <div class="sidebar">
+                <a href="#">
+                    <span class="material-icons-sharp">grid_view</span>
+                    <h3>Dashboard</h3>
+                </a>
+                <a href="#" class="active">
+                    <span class="material-icons-sharp">person</span>
+                    <h3>Customer</h3>
+                </a>
+                <a href="#">
+                    <span class="material-icons-sharp">receipt_long</span>
+                    <h3>Orders</h3>
+                </a>
+                <a href="#">
+                    <span class="material-icons-sharp">insights</span>
+                    <h3>Analytics</h3>
+                <a href="#">
+                    <span class="material-icons-sharp">mail_outline</span>
+                    <h3>Messages</h3>
+                    <span class="message-count">26</span>
+                </a>
+                </a>
+                <a href="#">
+                    <span class="material-icons-sharp">inventory</span>
+                    <h3>Products</h3>
+                </a>
+                <a href="#">
+                    <span class="material-icons-sharp">report_gmailerrorred</span>
+                    <h3>Reports</h3>
+                </a>
+                <a href="#">
+                    <span class="material-icons-sharp">settings</span>
+                    <h3>Settings</h3>
+                </a>
+                <a href="#">
+                    <span class="material-icons-sharp">add</span>
+                    <h3>Add</h3>
+                </a>
+                <a href="#">
+                    <span class="material-icons-sharp">logout</span>
+                    <h3>Logout</h3>
+                </a>
+            </div>
+        </aside>
+        <!------------------------------------------- END OF ASIDE --------------------------------------------------------->
+        <main>
+            <h1>Dashboard</h1>
+
+            <div class="date">
+                <label for="Transaction Date">Transaction Date :</label>
+                <input type="date">
+            </div>
+            <div class="insights">
+                <div class="customer">
+                    <span class="material-icons-sharp">person</span>
+                    <div class="middle">
+                        <div class="left">
+                            <h3># of Customer</h3>
+                            <h1>149116</h1>
+                            <small class="text-muted">View Entire List</small>
+                        </div>
+                    </div>
+                </div>
+                <!----------------------------------END OF TOTAL CUSTOMER------------------------------------------------------ -->
+                <div class="customer">
+                    <span class="material-icons-sharp">stacked_line_chart</span>
+                    <div class="middle">
+                        <div class="left">
+                            <h3>Total Revenue</h3>
+                            <h1>698812</h1>
+                            <small class="text-muted">View Entire List</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                <!----------------------------------END OF TOTAL REVENUE------------------------------------------------------- -->
+            <div class="graphic">
+                <div class="transcationbyhour">
+                    <span class="material-icons-sharp">today</span>
+                    <div class="middle">
+                        <div class="left">
+                            <h3>Transaction by Hour</h3>
+                            <h1>149116</h1>
+                            <small class="text-muted">View Entire List</small>
+                        </div>
+                    </div>
+                </div>
+                <!----------------------------------END OF TRANSACTION BY HOUR------------------------------------------------------- -->
+                <div class="transactionbyhour">
+                    <span class="material-icons-sharp">calendar_month</span>
+                    <div class="middle">
+                        <div class="left">
+                            <h3>Transaction by Day of Week</h3>
+                            <h1>149116</h1>
+                            <small class="text-muted">View Entire List</small>
+                        </div>
+                    </div>
+                </div>
+                <!----------------------------------END OF TRANSACTION BY DAY OF WEEK------------------------------------------------------- -->
+            </div>
+        <!-- ---------------------------------------END OF INSIGHTS AND GRAPHIC----------------------------------------------------------------- -->
+        <div class="topten">
+            <h2>Top 10 of Products</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Product Type</th>
+                        <th>Transaction ID</th>
+                        <th>Revenue</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Kopi</td>
+                        <td>Susu</td>
+                        <td>Jamu</td>
+                    </tr>
+                    <tr>
+                        <td>Kopi</td>
+                        <td>Susu</td>
+                        <td>Jamu</td>
+                    </tr>
+                    <tr>
+                        <td>Kopi</td>
+                        <td>Susu</td>
+                        <td>Jamu</td>
+                    </tr>
+                    <tr>
+                        <td>Kopi</td>
+                        <td>Susu</td>
+                        <td>Jamu</td>
+                    </tr>
+                    <tr>
+                        <td>Kopi</td>
+                        <td>Susu</td>
+                        <td>Jamu</td>
+                    </tr>
+                </tbody>
+            </table>
+            <a href="#">Show All</a>
+        </div>
+        </main>
+    <!--------------------------------------------END OF MAIN--------------------------------- -->
+
+    <div class="right">
+        <div class="top">
+            <button id="menu-btn">
+                <span class="material-icons-sharp">menu</span>
+            </button>
+            <div class="theme-toggler">
+                <span class="material-icons-sharp active">light_mode</span>
+                <span class="material-icons-sharp">dark_mode</span>
+            </div>
+            <div class="profile">
+                <div class="info">
+                    <p>Hai, <b>Febrian Revou 2024</b></p>
+                    <small class="text-muted">febrianhonda@gmail.com</small>
+                </div>
+                <div class="profile-photo">
+                    <img src="./Image/profile-1.png">
+                </div>
+            </div>
+        </div>
+
+        <!------------------------------------- END OF TOP-------------------------------------->
+        <div class="kolomkanan">
+            <h2>Revenue for Each Store % </h2>
+            <div class="piechart"></div>
+            <div class="productname"></div>
+        </div>
+    </div>
+    </div>
+
+    
+</body>
+</html>
