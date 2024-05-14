@@ -33,8 +33,10 @@ html{
 }
 
 body{
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding :0;
     font-family: poppins, sans-serif;
     font-size: 0.88rem;
     background: var(--color-background);
@@ -119,7 +121,7 @@ b{
 
 
 aside{
-    height: 100vh;
+    height: 100%;
     background: #9E7148;
 }
 
@@ -285,7 +287,7 @@ main .insights h3{
 
 main .graphic{
     display: grid;
-    grid-template-columns: repeat(2,1fr);
+    grid-template-columns: repeat(2,3fr);
     gap: 2rem;
 
 }
@@ -416,11 +418,34 @@ main .topten a{
     text-align: right;
 }
 
+
 .kolomkanan{
     background:var(--color-white);
     padding: var(--card-padding);
     border-radius: var(--card-border-radius);
-    margin-top: 2rem;
+    margin-top: 5rem;
+    margin-right: 2rem; 
+    box-shadow: var(--box-shadows);
+    transition: all 300ms ease;
+}
+
+.productname {
+    margin: 2rem;
+    background: var(--color-primary);
+    color: white;
+    border-radius: var(--border-radius-1);
+}
+
+.tablerev{
+    border-radius: var(--border-radius-1);
+}
+
+.totrev{
+    background:var(--color-white);
+    padding: var(--card-padding);
+    border-radius: var(--card-border-radius);
+    margin-top: 6.4rem;
+    margin-right: 2rem; 
     box-shadow: var(--box-shadows);
     transition: all 300ms ease;
 }
