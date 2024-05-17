@@ -19,3 +19,32 @@ toggle.onclick = function () {
   navigation.classList.toggle("active");
   main.classList.toggle("active");
 };
+
+document.addEventListener('DOMContentLoaded', () => {
+
+  // Populate recent orders list
+  const recentOrdersContainer = document.querySelector('.recentOrders'); // Select the correct container
+  fetch('assets/json/coffeeData.json')
+      .then(response => response.json())
+      .then(coffeeData => {
+          const ordersToDisplay = 5; // Jumlah pesanan terbaru yang ingin ditampilkan
+          coffeeData.recentOrders.slice(0, ordersToDisplay).forEach(order => {
+              const orderItem = document.createElement('div');
+              orderItem.classList.add('recentOrder');
+              orderItem.innerHTML = `
+                  <div class="imgBx"><img src="assets/img/profil.jpg" alt="${order.customer}"></div>
+                  <div class="order-info">
+                      <div class="name">${order.customer}</div>
+                      <div class="coffee">${order.coffee}</div>
+                  </div>
+                  <div class="price">$${order.price.toFixed(2)}</div>
+                  <div class="date">${order.orderDate}</div>
+                  <div class="status ${order.status.toLowerCase()}">${order.status}</div>`;
+              recentOrdersContainer.appendChild(orderItem); 
+          });
+      })
+      .catch(error => {
+          console.error('Error fetching data:', error); 
+          recentOrdersContainer.innerHTML = '<p>Failed to load recent orders.</p>'; 
+      });
+});
