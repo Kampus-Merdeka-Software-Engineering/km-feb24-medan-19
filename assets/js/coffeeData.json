@@ -1,0 +1,44 @@
+{
+    "recentOrders": [
+        {
+            "id": 1,
+            "customer": "Novita Adelin",
+            "coffee": "Latte",
+            "status": "Completed",
+            "price": 5.50,
+            "orderDate": "2023-11-10"
+        },
+        {
+            "id": 2,
+            "customer": "Gloria Angela",
+            "coffee": "Espresso",
+            "status": "Pending",
+            "price": 3.75,
+            "orderDate": "2023-11-09"
+        },
+        {
+            "id": 3,
+            "customer": "Khaerul Azmi",
+            "coffee": "Cappuccino",
+            "status": "Delivered",
+            "price": 4.25,
+            "orderDate": "2023-11-08"
+        },
+        {
+            "id": 4,
+            "customer": "Keysa",
+            "coffee": "Americano",
+            "status": "Completed",
+            "price": 3.00,
+            "orderDate": "2023-11-07"
+        },
+        {
+            "id": 5,
+            "customer": "Firyal",
+            "coffee": "Mocha",
+            "status": "Pending",
+            "price": 6.00,
+            "orderDate": "2023-11-06"
+        }
+    ]
+}
