@@ -136,9 +136,14 @@
 
         <!-- ======================= Cards ================== -->
         <div class="cardBox">
+          <form id="formtanggal">
+            
+            <input type="date" name="tanggal">
+            <button type="submit">Filter</button>
+          </form>
           <div class="card">
             <div>
-              <div class="numbers">1,504</div>
+              <div class="numbers">0</div>
               <div class="cardName">Daily Coffee Drinkers</div>
             </div>
 
@@ -149,7 +154,7 @@
 
           <div class="card">
             <div>
-              <div class="numbers">80</div>
+              <div class="numbers">0</div>
               <div class="cardName">Coffee Sales</div>
             </div>
 
@@ -160,7 +165,7 @@
 
           <div class="card">
             <div>
-              <div class="numbers customer-number">284</div>
+              <div class="numbers customer-number">0</div>
               <div class="cardName">Customer Feedbacks</div>
             </div>
 
@@ -185,6 +190,9 @@
         <div class="chartsBx">
           <div class="chart"><canvas id="chart-1"></canvas></div>
           <div class="chart"><canvas id="chart-2"></canvas></div>
+          <div class="chart"><canvas id="chart-2"></canvas></div>
+          <div class="chart"><canvas id="chart-2"></canvas></div>
+          <div class="chart"><canvas id="chart-2"></canvas></div>
         </div>
 
         <!-- ================ Order Details List ================= -->
@@ -194,15 +202,56 @@
               <h2>Recent Orders</h2>
               <a href="#" class="btn">View All</a>
             </div>
+            <table>
+              <thead>
+                <tr>
+                  <td>Product</td>
+                  <td>Price</td>
+                  <td>Payment</td>
+                  <td>Status</td>
+                </tr>
+              </thead>
+
+              <tbody>
+                <tr>
+                  <td>Espresso</td>
+                  <td>$4</td>
+                  <td>Paid</td>
+                  <td><span class="status delivered">Delivered</span></td>
+                </tr>
+
+                <tr>
+                  <td>Cappuccino</td>
+                  <td>$5</td>
+                  <td>Due</td>
+                  <td><span class="status pending">Pending</span></td>
+                </tr>
+
+                <tr>
+                  <td>Americano</td>
+                  <td>$3</td>
+                  <td>Paid</td>
+                  <td><span class="status return">Return</span></td>
+                </tr>
+
+                <tr>
+                  <td>Latte</td>
+                  <td>$5</td>
+                  <td>Due</td>
+                  <td><span class="status inProgress">In Progress</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
           </div>
 
-          <!-- =========== Scripts =========  -->
-          <script src="assets/js/main.js"></script>
+       
 
           <!-- ======= Charts JS ====== -->
           <script
             src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
-          <script src="assets/js/chartsJS.js"></script>
+          <!-- =========== Scripts =========  -->
+          <script src="assets/js/main.js"></script>
 
           <!-- ====== ionicons ======= -->
           <script type="module"
