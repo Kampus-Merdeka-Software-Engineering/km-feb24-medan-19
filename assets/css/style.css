@@ -27,6 +27,12 @@ body {
   width: 100%;
 }
 
+.tataletak {
+  display: flex;
+  justify-content: flex-end; /* Mengatur semua konten di dalam container ke kanan */
+  padding: 20px;
+}
+
 /* =============== Navigation ================ */
 .navigation {
   position: fixed;
