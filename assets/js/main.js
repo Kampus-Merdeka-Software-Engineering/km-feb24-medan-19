@@ -90,6 +90,11 @@ const recentOrdersContainer = document.querySelector('.recentOrders'); // Select
 const ctx1 = document.getElementById("chart-1").getContext("2d");
 const form = document.getElementById("formtanggal");
 const ctx2 = document.getElementById("chart-2").getContext("2d");
+const ctx3 = document.getElementById("chart-3").getContext("2d");
+const ctx4 = document.getElementById("chart-4").getContext("2d");
+const ctx5 = document.getElementById("chart-5").getContext("2d");
+
+
 let datajson = null
 
 form.addEventListener("submit", logSubmit);
@@ -147,6 +152,7 @@ document.addEventListener('DOMContentLoaded', () => {
       //   ''
       // };
 
+      //menampilkan chart-2
       tampilkangrafik1(datajson)
 
 
@@ -186,6 +192,57 @@ document.addEventListener('DOMContentLoaded', () => {
           plugins: {
             title: {
               display: true,
+              text: 'Transaksi per Bulan',
+              position: 'bottom',
+              font: {
+                size: 16,
+              },
+              padding: {
+                top: 20,
+                bottom: 10
+              }
+            }
+          }
+        }
+      });
+
+      // Chart-3
+      tampilkangrafik1(datajson)
+
+
+
+      const monthlyData = datajson.reduce((ac, current) => {
+
+        let c = ac[current.transaction_date] || 0;
+
+        c += 1
+        ac[current.transaction_date] = c;
+
+        return ac;
+      }, {});
+      const ctx3 = document.getElementById("chart-3").getContext("2d");
+      const myChart3 = new Chart(ctx3, {
+        type: "bar",
+        data: {
+          labels: Object.keys(monthlyData),
+          datasets: [
+            {
+              label: "# of Orders",
+              data: Object.values(monthlyData),
+              backgroundColor: [
+                "#AF8F6F",
+                "#74512D",
+                "#543310",
+                "#151515",
+                "#F8C794",
+              ],
+            },
+          ],
+        },
+        options: {
+          plugins: {
+            title: {
+              display: true,
               text: 'Transaksi per Produk Kategori',
               position: 'bottom',
               font: {
@@ -200,6 +257,54 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       });
 
+      // 
+      function tampilkanGrafik2(datajson) {
+        const revenuePerMonth = datajson.reduce((revenues, transaction) => {
+          const month = transaction.Month_Name;
+          const revenue = parseFloat(transaction.Revenue);
+          revenues[month] = (revenues[month] || 0) + revenue;
+          return revenues;
+        }, {});
+        
+        const ctx4 = document.getElementById("chart-4").getContext("2d"); // Ganti ctx4 menjadi ctx5
+        const myChart4 = new Chart(ctx4, {
+          type: "bar",
+          data: {
+            labels: Object.keys(transactionsPerCategory),
+            datasets: [
+              {
+                label: "# of Transactions",
+                data: Object.values(transactionsPerCategory),
+                backgroundColor: [
+                  "#AF8F6F",
+                  "#74512D",
+                  "#543310",
+                  "#151515",
+                  "#F8C794",
+                ],
+              },
+            ],
+          },
+          options: {
+            plugins: {
+              title: {
+                display: true,
+                text: 'Transaksi per Produk Kategori',
+                position: 'bottom',
+                font: {
+                  size: 16,
+                },
+                padding: {
+                  top: 20,
+                  bottom: 10
+                }
+              }
+            }
+          }
+        });
+      }
+      
+      
 
       // console.log(Object.values(productTypeObject))
 
