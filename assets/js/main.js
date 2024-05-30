@@ -35,11 +35,15 @@ function tampilkangrafik1(data) {
             label: "# of Orders",
             data: Object.values(productTypeObject),
             backgroundColor: [
-              "#AF8F6F",
-              "#74512D",
-              "#543310",
-              "#151515",
-              "#F8C794",
+              "#4B2818",
+              "#966C4D",
+              "#C58C58",
+              "#6F798C",
+              "#496157",
+              "#584B77",
+              "#332211",
+              "#D9CAB3",
+              "#444444",
             ],
           },
         ],
@@ -48,7 +52,7 @@ function tampilkangrafik1(data) {
         plugins: {
           title: {
             display: true,
-            text: 'Transaksi per Produk Kategori',
+            text: 'Transaction by Product Category',
             position: 'bottom',
             font: {
               size: 16,
@@ -72,11 +76,15 @@ function tampilkangrafik1(data) {
         label: "# of Orders",
         data: Object.values(productTypeObject),
         backgroundColor: [
-          "#AF8F6F",
-          "#74512D",
-          "#543310",
-          "#151515",
-          "#F8C794",
+          "#4B2818",
+          "#966C4D",
+          "#C58C58",
+          "#6F798C",
+          "#496157",
+          "#584B77",
+          "#332211",
+          "#D9CAB3",
+          "#444444",
         ],
       },
     ],
@@ -152,11 +160,18 @@ document.addEventListener('DOMContentLoaded', () => {
       //   ''
       // };
 
+      // 1. Menghitung Total Customer (Unique Customer)
+      const totalCustomer = datajson.reduce((uniqueCustomers, currentTransaction) => {
+        uniqueCustomers.add(currentTransaction.transaction_id);
+        return uniqueCustomers;
+      }, new Set()).size;
+
+      const customerNumber = document.querySelector('.customer-number');
+      customerNumber.textContent = totalCustomer;
+
+
       //menampilkan chart-2
       tampilkangrafik1(datajson)
-
-
-
       const coffeebyAzmi = datajson.reduce((ac, current) => {
 
         let c = ac[current.transaction_date] || 0;
@@ -179,11 +194,15 @@ document.addEventListener('DOMContentLoaded', () => {
               label: "# of Orders",
               data: Object.values(coffeebyAzmi),
               backgroundColor: [
-                "#AF8F6F",
-                "#74512D",
-                "#543310",
-                "#151515",
-                "#F8C794",
+                "#4B2818",
+                "#966C4D",
+                "#C58C58",
+                "#6F798C",
+                "#496157",
+                "#584B77",
+                "#332211",
+                "#D9CAB3",
+                "#444444",
               ],
             },
           ],
@@ -206,35 +225,30 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       });
 
-      // Chart-3
+      // Chart-3 (Revenue for Each Store)
       tampilkangrafik1(datajson)
+      const storeRevenue = datajson.reduce((ac, current) => {
 
-
-
-      const monthlyData = datajson.reduce((ac, current) => {
-
-        let c = ac[current.transaction_date] || 0;
+        let c = ac[current.store_location] || 0;
 
         c += 1
-        ac[current.transaction_date] = c;
+        ac[current.store_location] = c;
 
         return ac;
       }, {});
       const ctx3 = document.getElementById("chart-3").getContext("2d");
       const myChart3 = new Chart(ctx3, {
-        type: "bar",
+        type: "pie",
         data: {
-          labels: Object.keys(monthlyData),
+          labels: Object.keys(storeRevenue),
           datasets: [
             {
-              label: "# of Orders",
-              data: Object.values(monthlyData),
+              label: "Store Location",
+              data: Object.values(storeRevenue),
               backgroundColor: [
-                "#AF8F6F",
-                "#74512D",
-                "#543310",
-                "#151515",
-                "#F8C794",
+                "#4B2818",
+                "#966C4D",
+                "#C58C58",
               ],
             },
           ],
@@ -243,7 +257,7 @@ document.addEventListener('DOMContentLoaded', () => {
           plugins: {
             title: {
               display: true,
-              text: 'Transaksi per Produk Kategori',
+              text: 'Revenue for Each Store',
               position: 'bottom',
               font: {
                 size: 16,
@@ -258,14 +272,14 @@ document.addEventListener('DOMContentLoaded', () => {
       });
 
       // 
-      function tampilkanGrafik2(datajson) {
+      function tampilkanGrafik1(datajson) {
         const revenuePerMonth = datajson.reduce((revenues, transaction) => {
           const month = transaction.Month_Name;
           const revenue = parseFloat(transaction.Revenue);
           revenues[month] = (revenues[month] || 0) + revenue;
           return revenues;
         }, {});
-        
+
         const ctx4 = document.getElementById("chart-4").getContext("2d"); // Ganti ctx4 menjadi ctx5
         const myChart4 = new Chart(ctx4, {
           type: "bar",
@@ -276,11 +290,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 label: "# of Transactions",
                 data: Object.values(transactionsPerCategory),
                 backgroundColor: [
-                  "#AF8F6F",
-                  "#74512D",
-                  "#543310",
-                  "#151515",
-                  "#F8C794",
+                  "#4B2818",
+                  "#966C4D",
+                  "#C58C58",
+                  "#6F798C",
+                  "#496157",
+                  "#584B77",
+                  "#332211",
+                  "#D9CAB3",
+                  "#444444",
                 ],
               },
             ],
@@ -289,7 +307,7 @@ document.addEventListener('DOMContentLoaded', () => {
             plugins: {
               title: {
                 display: true,
-                text: 'Transaksi per Produk Kategori',
+                text: 'Transaction by Product Category',
                 position: 'bottom',
                 font: {
                   size: 16,
@@ -303,8 +321,8 @@ document.addEventListener('DOMContentLoaded', () => {
           }
         });
       }
-      
-      
+
+
 
       // console.log(Object.values(productTypeObject))
 
