@@ -211,7 +211,7 @@ document.addEventListener('DOMContentLoaded', () => {
           plugins: {
             title: {
               display: true,
-              text: 'Transaksi per Bulan',
+              text: 'Transactions per Month',
               position: 'bottom',
               font: {
                 size: 16,
@@ -236,6 +236,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
         return ac;
       }, {});
+      
+      // total transaksi per store
+      // lower manhaattan = 100 transaksi
+      // astoria = 200 transaksi
+      // hells kitchen = 100 transaksi
+
+      
+
       const ctx3 = document.getElementById("chart-3").getContext("2d");
       const myChart3 = new Chart(ctx3, {
         type: "pie",
