@@ -1,3 +1,7 @@
+Chart.defaults.font.family = 'Montserrat'; // Mengatur font default chart
+Chart.register(ChartDataLabels);
+
+
 function logSubmit(event) {
   //log.textContent = `Form Submitted! Timestamp: ${event.timeStamp}`;
   // mesti bisa ambil filter apa aja
@@ -27,12 +31,11 @@ function tampilkangrafik1(data) {
   // check dulu klo chart1 masih kosong
   if (chart1 == null) {
     chart1 = new Chart(ctx1, {
-      type: "pie",
+      type: "bar",
       data: {
         labels: Object.keys(productTypeObject),
         datasets: [
           {
-            label: "# of Orders",
             data: Object.values(productTypeObject),
             backgroundColor: [
               "#4B2818",
@@ -50,20 +53,51 @@ function tampilkangrafik1(data) {
       },
       options: {
         plugins: {
+          datalabels: { // Konfigurasi datalabels
+            formatter: (value, ctx) => {
+              const total = ctx.dataset.data.reduce((a, b) => a + b, 0);
+              const percentage = ((value / total) * 100).toFixed(2) + '%';
+              return percentage;
+            },
+            color: 'grey',
+            anchor: 'end',       // Jangkar label di ujung atas bar
+            align: 'top',        // Sejajarkan label di atas jangkar
+            offset: -10,        // Jarak antara label dan bar (nilai negatif untuk di atas)
+            formatter: Math.round   // Perataan teks label
+          },
+          legend: { display: false },
           title: {
             display: true,
             text: 'Transaction by Product Category',
-            position: 'bottom',
-            font: {
-              size: 16,
-            },
-            padding: {
-              top: 20,
-              bottom: 10
+            font: { size: 16 },
+            position: 'top'
+          }
+        },
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+          x: {
+            ticks: {
+              maxRotation: 45,   // Rotasi maksimum (dalam derajat)
+              minRotation: 45,   // Rotasi minimum (dalam derajat)
+            }
+          }, // Bagian ini untuk mengatur skala
+          y: {
+            min: 0,  // Nilai minimum sumbu y (bisa disesuaikan)
+            max: 16000, // Nilai maksimum sumbu y (bisa disesuaikan)
+            beginAtZero: true, // Opsional: mulai sumbu y dari nol
+            ticks: {
+              // Pengaturan khusus untuk sumbu y
+              stepSize: 1000, // Interval antara setiap tick
+              callback: function (value, index, ticks) {
+                // Hanya tampilkan nilai-nilai tertentu
+                return [0, 500, 1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000, 11000, 12000, 13000, 14000, 15000, 16000].includes(value) ? value : null;
+              }
             }
           }
         }
       }
+
     });
 
     return;
@@ -170,7 +204,7 @@ document.addEventListener('DOMContentLoaded', () => {
       customerNumber.textContent = totalCustomer;
 
 
-      //menampilkan chart-2
+      //Menampilkan chart-2
       tampilkangrafik1(datajson)
       const coffeebyAzmi = datajson.reduce((ac, current) => {
 
@@ -209,6 +243,9 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         options: {
           plugins: {
+            datalabels: {
+              display: false
+            },
             title: {
               display: true,
               text: 'Transactions per Month',
@@ -227,24 +264,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // Chart-3 (Revenue for Each Store)
       tampilkangrafik1(datajson)
-      const storeRevenue = datajson.reduce((ac, current) => {
+      const storeRevenue = datajson.reduce((acc, current) => {
+        const storeLocation = current.store_location;
+        const revenue = parseFloat(current.Revenue); // Ambil nilai revenue
 
-        let c = ac[current.store_location] || 0;
+        // Jika storeLocation belum ada di accumulator, inisialisasi dengan 0
+        acc[storeLocation] = (acc[storeLocation] || 0) + revenue; // Tambahkan revenue
 
-        c += 1
-        ac[current.store_location] = c;
-
-        return ac;
+        return acc;
       }, {});
-      
       // total transaksi per store
       // lower manhaattan = 100 transaksi
       // astoria = 200 transaksi
       // hells kitchen = 100 transaksi
 
-      
+
 
       const ctx3 = document.getElementById("chart-3").getContext("2d");
+
       const myChart3 = new Chart(ctx3, {
         type: "pie",
         data: {
@@ -253,84 +290,43 @@ document.addEventListener('DOMContentLoaded', () => {
             {
               label: "Store Location",
               data: Object.values(storeRevenue),
-              backgroundColor: [
-                "#4B2818",
-                "#966C4D",
-                "#C58C58",
-              ],
+              backgroundColor: ["#6F798C", "#966C4D", "#C58C58"],
             },
           ],
         },
         options: {
           plugins: {
+            datalabels: { // Konfigurasi datalabels
+              formatter: (value, ctx) => {
+                const total = ctx.dataset.data.reduce((a, b) => a + b, 0);
+                const percentage = ((value / total) * 100).toFixed(2) + '%';
+                return percentage;
+              },
+              color: 'white', // Warna teks label
+              anchor: 'center', // Posisi label (tengah slice)
+              align: 'center'   // Perataan teks label
+            },
             title: {
               display: true,
               text: 'Revenue for Each Store',
               position: 'bottom',
-              font: {
-                size: 16,
-              },
-              padding: {
-                top: 20,
-                bottom: 10
+              font: { size: 16 },
+              padding: { top: 20, bottom: 10 }
+            },
+            tooltip: {
+              callbacks: {
+                label: (context) => {
+                  const label = context.label || ''; // Ambil label slice (store location)
+                  const value = context.parsed;     // Ambil nilai data slice
+                  const total = context.dataset.data.reduce((a, b) => a + b, 0); // Hitung total data
+                  const percentage = ((value / total) * 100).toFixed(2) + '%';  // Hitung persentase
+                  return `${label}: ${value} (${percentage})`; // Kembalikan label dengan nilai dan persentase
+                }
               }
             }
           }
         }
       });
-
-      // 
-      function tampilkanGrafik1(datajson) {
-        const revenuePerMonth = datajson.reduce((revenues, transaction) => {
-          const month = transaction.Month_Name;
-          const revenue = parseFloat(transaction.Revenue);
-          revenues[month] = (revenues[month] || 0) + revenue;
-          return revenues;
-        }, {});
-
-        const ctx4 = document.getElementById("chart-4").getContext("2d"); // Ganti ctx4 menjadi ctx5
-        const myChart4 = new Chart(ctx4, {
-          type: "bar",
-          data: {
-            labels: Object.keys(transactionsPerCategory),
-            datasets: [
-              {
-                label: "# of Transactions",
-                data: Object.values(transactionsPerCategory),
-                backgroundColor: [
-                  "#4B2818",
-                  "#966C4D",
-                  "#C58C58",
-                  "#6F798C",
-                  "#496157",
-                  "#584B77",
-                  "#332211",
-                  "#D9CAB3",
-                  "#444444",
-                ],
-              },
-            ],
-          },
-          options: {
-            plugins: {
-              title: {
-                display: true,
-                text: 'Transaction by Product Category',
-                position: 'bottom',
-                font: {
-                  size: 16,
-                },
-                padding: {
-                  top: 20,
-                  bottom: 10
-                }
-              }
-            }
-          }
-        });
-      }
-
-
 
       // console.log(Object.values(productTypeObject))
 
@@ -355,3 +351,38 @@ document.addEventListener('DOMContentLoaded', () => {
       recentOrdersContainer.innerHTML = '<p>Failed to load recent orders.</p>';
     });
 });
+
+      document.addEventListener('DOMContentLoaded', () => {
+        const tableBody = document.querySelector('#recentOrdersTable tbody');
+
+        fetch('assets/json/data.json') // Ganti dengan path yang benar
+          .then(response => {
+            if (!response.ok) {
+              throw new Error('Network response was not ok.');
+            }
+            return response.json();
+          })
+          .then(data => {
+            populateRecentOrders(data);
+          })
+          .catch(error => {
+            console.error('Error fetching or parsing data:', error);
+            tableBody.innerHTML = '<tr><td colspan="5">Failed to load recent orders.</td></tr>';
+          });
+      });
+
+      function populateRecentOrders(data) {
+        const tableBody = document.querySelector('#recentOrdersTable tbody');
+        tableBody.innerHTML = ''; // Clear existing rows
+
+        const recentOrders = data.slice(0, 5);
+
+        recentOrders.forEach(order => {
+          const row = tableBody.insertRow();
+          row.insertCell().textContent = order.transaction_id;
+          row.insertCell().textContent = order.transaction_date;
+          row.insertCell().textContent = order.store_location;
+          row.insertCell().textContent = order.product_detail || order.product_name || 'Unknown Product'; // Penanganan jika field product_detail atau product_name tidak ada
+          row.insertCell().textContent = `$${parseFloat(order.Revenue).toFixed(2)}`;
+        });
+      }
