@@ -220,7 +220,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // Chart 2: Bar Chart
       const ctx2 = document.getElementById("chart-2").getContext("2d");
       const myChart2 = new Chart(ctx2, {
-        type: "bar",
+        type: "line",
         data: {
           labels: Object.keys(coffeebyAzmi),
           datasets: [
@@ -327,6 +327,8 @@ document.addEventListener('DOMContentLoaded', () => {
           }
         }
       });
+
+      
 
       // console.log(Object.values(productTypeObject))
 
