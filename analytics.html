@@ -84,14 +84,20 @@
     </style>
     </head>
     <body>
+        
         <div class="logo-container">
             <div class="logo-wrapper">
-                <img src="../img/astoria.jpg" alt="Astoria Logo" class="logo">
-                <img src="../img/hellskitchen.jpg" alt="Hell's Kitchen Logo"
+                <img src="/assets/img/astoria.jpg" alt="Astoria Logo" class="logo">
+                <img src="/assets/img/hellskitchen.jpg" alt="Hell's Kitchen Logo"
                     class="logo">
-                <img src="../img/lowermanhattan.jpg" alt="Lower Manhattan Logo"
+                <img src="/assets/img/lowermanhattan.jpg" alt="Lower Manhattan Logo"
                     class="logo">
             </div>
+        </div>
+        <div class="container mt-5">
+
+        <p>Kembali <a href="/">Klik disini</a></p>
+
         </div>
 
         <div class="container mt-5">
@@ -160,7 +166,7 @@
 
         <script>
         // Fetch data from data.json
-        fetch('../json/data.json')
+        fetch('/assets/json/data.json')
         .then(response => response.json())
         .then(data => {
             // Aggregate data

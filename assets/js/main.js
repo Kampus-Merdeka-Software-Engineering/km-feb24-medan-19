@@ -170,7 +170,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Populate recent orders list
 
-  fetch('assets/json/data.json')
+  fetch('/assets/json/data.json')
     .then(response => response.json())
     .then(coffeeData => {
       datajson = coffeeData
@@ -457,7 +457,7 @@ document.addEventListener('DOMContentLoaded', () => {
 document.addEventListener('DOMContentLoaded', () => {
   const tableBody = document.querySelector('#recentOrdersTable tbody');
 
-  fetch('assets/json/data.json') // Ganti dengan path yang benar
+  fetch('/assets/json/data.json') // Ganti dengan path yang benar
     .then(response => {
       if (!response.ok) {
         throw new Error('Network response was not ok.');
