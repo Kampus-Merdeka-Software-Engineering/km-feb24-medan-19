@@ -204,23 +204,18 @@ body {
   font-size: 1.2rem;
 }
 
-.user {
-  position: relative;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  overflow: hidden;
-  cursor: pointer;
-}
+.logo-wrapper {
+  background-color: white;
+  padding: 10px;
+  border-radius: 10px; /* Menambahkan radius pada container */
+  display: flex;
+  align-items: center;
+  }
 
-.user img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
+  .logo {
+  max-width: 80px; /* Sesuaikan ukuran logo sesuai kebutuhan */
+  margin-left: 10px;
+  }
 
 /* ======================= Cards ====================== */
 .cardBox {
@@ -386,10 +381,6 @@ body {
   /* Membuat teks mengisi sisa ruang yang tersedia */
 }
 
-/* ... (gaya CSS lainnya) ... */
-
-
-
 .details .recentOrders table tr:last-child {
   border-bottom: none;
 }
@@ -413,93 +404,6 @@ body {
 
 .details .recentOrders table tr td:nth-child(3) {
   text-align: center;
-}
-
-.status.delivered {
-  padding: 2px 4px;
-  background: #8de02c;
-  color: var(--white);
-  border-radius: 4px;
-  font-size: 14px;
-  font-weight: 500;
-}
-
-.status.pending {
-  padding: 2px 4px;
-  background: #e9b10a;
-  color: var(--white);
-  border-radius: 4px;
-  font-size: 14px;
-  font-weight: 500;
-}
-
-.status.return {
-  padding: 2px 4px;
-  background: #f00;
-  color: var(--white);
-  border-radius: 4px;
-  font-size: 14px;
-  font-weight: 500;
-}
-
-.status.inProgress {
-  padding: 2px 4px;
-  background: #1795ce;
-  color: var(--white);
-  border-radius: 4px;
-  font-size: 14px;
-  font-weight: 500;
-}
-
-.recentCustomers {
-  position: relative;
-  display: grid;
-  min-height: 500px;
-  padding: 20px;
-  background: var(--white);
-  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
-  border-radius: 20px;
-}
-
-.recentCustomers .imgBx {
-  position: relative;
-  width: 40px;
-  height: 40px;
-  border-radius: 50px;
-  overflow: hidden;
-}
-
-.recentCustomers .imgBx img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.recentCustomers table tr td {
-  padding: 12px 10px;
-}
-
-.recentCustomers table tr td h4 {
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 1.2rem;
-}
-
-.recentCustomers table tr td h4 span {
-  font-size: 14px;
-  color: var(--black2);
-}
-
-.recentCustomers table tr:hover {
-  background: var(--blue);
-  color: var(--white);
-}
-
-.recentCustomers table tr:hover td h4 span {
-  color: var(--white);
 }
 
 /* ====================== Responsive Design ========================== */
