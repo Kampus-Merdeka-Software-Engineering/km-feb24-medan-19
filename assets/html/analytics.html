@@ -102,6 +102,7 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="card">
+                        <div class="card-header" style="background-color: #f0f0f5;"></div>
                         <div class="card-body chart-container">
                             <h5 class="card-title">
                                 <i class="fas fa-chart-line"></i> 
@@ -113,6 +114,7 @@
                 </div>
                 <div class="col-md-6">
                     <div class="card">
+                        <div class="card-header" style="background-color: #f0f0f5;"></div>
                         <div class="card-body chart-container">
                             <h5 class="card-title">
                                 <i class="fas fa-chart-bar"></i> 
@@ -126,6 +128,7 @@
             <div class="row">
                 <div class="col-md-6 offset-md-3">
                     <div class="card">
+                        <div class="card-header" style="background-color: #f0f0f5;"></div>
                         <div class="card-body chart-container">
                             <h5 class="card-title">
                                 <i class="fas fa-chart-pie"></i> 
@@ -137,20 +140,22 @@
                 </div>
             </div>
 
-            <div class="keterangan">
-                <p><strong>Keterangan:</strong></p>
-                <ul>
-                    <li>Data ini mencakup penjualan dari tanggal 2023-01-08
-                        hingga 2023-06-29.</li>
-                    <li>Grafik "Tren Pendapatan Harian" menunjukkan fluktuasi
-                        pendapatan harian.</li>
-                    <li>Grafik "Distribusi Pendapatan Per Jam" menunjukkan
-                        jam-jam tersibuk untuk penjualan.</li>
-                    <li>Grafik "Pendapatan Hari Kerja vs. Akhir Pekan"
-                        membandingkan pendapatan total antara hari kerja dan
-                        akhir pekan.</li>
-                </ul>
+            <div class="card keterangan">
+                <div class="card-header" style="background-color: #f0f0f5;">
+                    <i class="fas fa-info-circle"></i> 
+                    <strong>Keterangan</strong>
+                </div>
+                <div class="card-body" style="background-color: #f8f9fa;">
+                    <ul>
+                        <li>Data ini mencakup penjualan dari tanggal 2023-01-08 hingga 2023-06-29.</li>
+                        <li>Grafik "Tren Pendapatan Harian" menunjukkan fluktuasi pendapatan harian.</li>
+                        <li>Grafik "Distribusi Pendapatan Per Jam" menunjukkan jam-jam tersibuk untuk penjualan.</li>
+                        <li>Grafik "Pendapatan Hari Kerja vs. Akhir Pekan" membandingkan pendapatan total antara hari kerja dan akhir pekan.</li>
+                    </ul>
+                    </ul>
+                </div>
             </div>
+            
         </div>
 
         <script>
@@ -246,10 +251,10 @@
             options: {
                 plugins: {
                 legend: {
-                    position: 'right'
+                    position: 'bottom',
+                    labels: { font: { size: 14, weight: 'bold'}, color: '#555'}
                 }
-                }
-            }
+            }}
             });
         })
         .catch(error => {

@@ -28,6 +28,7 @@ body {
 }
 
 .tataletak {
+  font-family: 'Montserrat';
   display: flex;
   justify-content: flex-end; /* Mengatur semua konten di dalam container ke kanan */
   padding: 20px;
@@ -175,35 +176,6 @@ body {
   cursor: pointer;
 }
 
-.search {
-  position: relative;
-  width: 400px;
-  margin: 0 10px;
-}
-
-.search label {
-  position: relative;
-  width: 100%;
-}
-
-.search label input {
-  width: 100%;
-  height: 40px;
-  border-radius: 40px;
-  padding: 5px 20px;
-  padding-left: 35px;
-  font-size: 18px;
-  outline: none;
-  border: 1px solid var(--black2);
-}
-
-.search label ion-icon {
-  position: absolute;
-  top: 0;
-  left: 10px;
-  font-size: 1.2rem;
-}
-
 .logo-wrapper {
   background-color: white;
   padding: 10px;
@@ -340,45 +312,6 @@ body {
 .details .recentOrders table tr {
   color: var(--black1);
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-}
-
-.recentOrder .imgBx img {
-  width: 40px;
-  /* Sesuaikan ukuran lebar sesuai keinginan Anda */
-  height: 40px;
-  /* Sesuaikan ukuran tinggi sesuai keinginan Anda */
-  object-fit: cover;
-  /* Opsi untuk menjaga rasio aspek gambar */
-  border-radius: 50%;
-  /* Membuat gambar menjadi lingkaran */
-}
-
-/* ... (gaya CSS lainnya) ... */
-
-.recentOrder .order-content {
-  display: flex;
-  /* Mengatur gambar dan teks dalam satu baris */
-  align-items: center;
-  /* Menyelaraskan gambar dan teks secara vertikal */
-}
-
-.recentOrder .imgBx {
-  margin-right: 10px;
-  /* Memberi jarak antara gambar dan teks */
-}
-
-.recentOrder .imgBx img {
-  width: 40px;
-  /* Sesuaikan ukuran lebar sesuai keinginan Anda */
-  height: 40px;
-  /* Sesuaikan ukuran tinggi sesuai keinginan Anda */
-  object-fit: cover;
-  border-radius: 50%;
-}
-
-.recentOrder .order-info {
-  flex-grow: 1;
-  /* Membuat teks mengisi sisa ruang yang tersedia */
 }
 
 .details .recentOrders table tr:last-child {
