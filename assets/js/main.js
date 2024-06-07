@@ -16,6 +16,8 @@ function logSubmit(event) {
   tampilkangrafik1(filteredData);
 }
 
+// -------- Chart 1 -----------
+
 let chart1 = null;
 function tampilkangrafik1(data) {
   const productTypeObject = data.reduce((ac, current) => {
@@ -204,42 +206,60 @@ document.addEventListener('DOMContentLoaded', () => {
       customerNumber.textContent = totalCustomer;
 
 
-      //Menampilkan chart-2
-      tampilkangrafik1(datajson)
-      const coffeebyAzmi = datajson.reduce((ac, current) => {
+      // -------- Chart 2 -----------
 
-        let c = ac[current.transaction_date] || 0;
+      // Fungsi untuk menampilkan chart (asumsikan fungsi ini sudah didefinisikan)
+      tampilkangrafik1(datajson);
 
-        c += 1
-        ac[current.transaction_date] = c;
+      // Agregasi data berdasarkan store_location dan product_category
+      const storeProductTransactions = datajson.reduce((acc, current) => {
+        const store = current.store_location;
+        const product = current.product_category;
+        const key = `${store}-${product}`;
 
-        return ac;
+        acc[key] = (acc[key] || 0) + parseInt(current.transaction_qty);
+        return acc;
       }, {});
 
+      // Array untuk menyimpan data chart
+      const chartData = [];
+
+      // Array warna yang diinginkan
+      const colors = ["#6F798C", "#966C4D", "#C58C58"];
+
+      // Mendapatkan daftar unik store
+      const uniqueStores = [...new Set(datajson.map(item => item.store_location))];
+
+      // Membuat 3 cabang (kategori) secara manual
+      const categories = ["Coffee beans", "Loose Tea", "Packaged Chocolate", "Coffee"];
+
+      // Iterasi untuk membuat dataset per store
+      for (let i = 0; i < uniqueStores.length; i++) {
+        const store = uniqueStores[i];
+        const colorIndex = i % colors.length; // Dapatkan indeks warna secara bergantian
+
+        const storeData = [];
+        for (const category of categories) {
+          const key = `${store}-${category}`;
+          storeData.push(storeProductTransactions[key] || 0);
+        }
+
+        chartData.push({
+          label: store,
+          data: storeData,
+          backgroundColor: colors[colorIndex], // Gunakan warna berdasarkan indeks
+          borderColor: colors[colorIndex],    // Gunakan warna berdasarkan indeks
+          borderWidth: 1
+        });
+      }
 
       // Chart 2: Bar Chart
       const ctx2 = document.getElementById("chart-2").getContext("2d");
       const myChart2 = new Chart(ctx2, {
-        type: "line",
+        type: "bar",
         data: {
-          labels: Object.keys(coffeebyAzmi),
-          datasets: [
-            {
-              label: "# of Orders",
-              data: Object.values(coffeebyAzmi),
-              backgroundColor: [
-                "#4B2818",
-                "#966C4D",
-                "#C58C58",
-                "#6F798C",
-                "#496157",
-                "#584B77",
-                "#332211",
-                "#D9CAB3",
-                "#444444",
-              ],
-            },
-          ],
+          labels: categories,
+          datasets: chartData
         },
         options: {
           plugins: {
@@ -248,8 +268,8 @@ document.addEventListener('DOMContentLoaded', () => {
             },
             title: {
               display: true,
-              text: 'Transactions per Month',
-              position: 'bottom',
+              text: 'Total Transactions per Product Category per Store',
+              position: 'top',
               font: {
                 size: 16,
               },
@@ -257,12 +277,31 @@ document.addEventListener('DOMContentLoaded', () => {
                 top: 20,
                 bottom: 10
               }
+            },
+            legend: {
+              display: true,
+              position: 'right'
+            }
+          },
+          scales: {
+            x: {
+              ticks: {
+                maxRotation: 45,   // Rotasi maksimum (dalam derajat)
+                minRotation: 45,   // Rotasi minimum (dalam derajat)
+              },
+              stacked: true
+            },
+            y: {
+              beginAtZero: true,
+              stacked: true
             }
           }
         }
       });
 
-      // Chart-3 (Revenue for Each Store)
+      // -------- Chart 3 -----------
+
+      // Chart-3 (Pie Chart - Revenue for Each Store)
       tampilkangrafik1(datajson)
       const storeRevenue = datajson.reduce((acc, current) => {
         const storeLocation = current.store_location;
@@ -273,12 +312,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         return acc;
       }, {});
-      // total transaksi per store
-      // lower manhaattan = 100 transaksi
-      // astoria = 200 transaksi
-      // hells kitchen = 100 transaksi
-
-
 
       const ctx3 = document.getElementById("chart-3").getContext("2d");
 
@@ -309,7 +342,7 @@ document.addEventListener('DOMContentLoaded', () => {
             title: {
               display: true,
               text: 'Revenue for Each Store',
-              position: 'bottom',
+              position: 'top',
               font: { size: 16 },
               padding: { top: 20, bottom: 10 }
             },
@@ -328,63 +361,130 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       });
 
-      
+      // -------- Chart 4 -----------
 
-      // console.log(Object.values(productTypeObject))
+      // Fungsi untuk menampilkan chart (asumsikan fungsi ini sudah didefinisikan)
+      tampilkangrafik1(datajson);
 
-      // const ordersToDisplay = 5; // Jumlah pesanan terbaru yang ingin ditampilkan
-      // coffeeData.recentOrders.slice(0, ordersToDisplay).forEach(order => {
-      //     const orderItem = document.createElement('div');
-      //     orderItem.classList.add('recentOrder');
-      //     orderItem.innerHTML = `
-      //         <div class="imgBx"><img src="assets/img/profil.jpg" alt="${order.customer}"></div>
-      //         <div class="order-info">
-      //             <div class="name">${order.customer}</div>
-      //             <div class="coffee">${order.coffee}</div>
-      //         </div>
-      //         <div class="price">$${order.price.toFixed(2)}</div>
-      //         <div class="date">${order.orderDate}</div>
-      //         <div class="status ${order.status.toLowerCase()}">${order.status}</div>`;
-      //     recentOrdersContainer.appendChild(orderItem); 
-      // });
+      // Agregasi data berdasarkan store_location, Month, dan Revenue
+      const storeRevenueByMonth = datajson.reduce((acc, current) => {
+        const storeLocation = current.store_location;
+        const month = current.Month_Name; // Gunakan nama bulan yang lebih mudah dibaca
+        const revenue = parseFloat(current.Revenue);
+
+        if (!acc[storeLocation]) {
+          acc[storeLocation] = {};
+        }
+        acc[storeLocation][month] = (acc[storeLocation][month] || 0) + revenue;
+        return acc;
+      }, {});
+
+
+      // Mendapatkan daftar unik bulan
+      const uniqueMonths = [...new Set(datajson.map(item => item.Month_Name))]; // Gunakan nama bulan
+
+      // Array warna untuk setiap store
+      const storeColors = {
+        "Lower Manhattan": "6F798C",
+        "Astoria": "#966C4D",
+        "Hell\u0027s Kitchen": "#C58C58"
+      };
+
+      // Iterasi untuk membuat dataset per store
+      for (const store of uniqueStores) {
+        const storeData = [];
+        for (const month of uniqueMonths) {
+          storeData.push(storeRevenueByMonth[store][month] || 0); // Jika tidak ada revenue, set ke 0
+        }
+
+        chartData.push({
+          label: store,
+          data: storeData,
+          backgroundColor: storeColors[store],
+          borderColor: storeColors[store],
+          fill: false, // Tidak mengisi area di bawah garis
+        });
+      }
+
+      // Chart 4: Line Chart (Revenue for Each Store by Month)
+      const ctx4 = document.getElementById("chart-4").getContext("2d");
+      const myChart4 = new Chart(ctx4, {
+        type: "line",
+        data: {
+          labels: uniqueMonths, // Label sumbu x adalah bulan
+          datasets: chartData
+        },
+        options: {
+          plugins: {
+            datalabels: {
+              display: false
+            },
+            title: {
+              display: true,
+              text: 'Revenue for Each Store by Month',
+              position: 'top',
+              font: {
+                size: 16,
+              },
+              padding: {
+                top: 20,
+                bottom: 10
+              }
+            },
+            legend: {
+              display: true,
+              position: 'bottom'
+            },
+          },
+          scales: {
+            y: {
+              beginAtZero: true
+            }
+          }
+        }
+      });
+
+
+
     })
     .catch(error => {
       console.error('Error fetching data:', error);
       recentOrdersContainer.innerHTML = '<p>Failed to load recent orders.</p>';
     });
+
 });
 
-      document.addEventListener('DOMContentLoaded', () => {
-        const tableBody = document.querySelector('#recentOrdersTable tbody');
+document.addEventListener('DOMContentLoaded', () => {
+  const tableBody = document.querySelector('#recentOrdersTable tbody');
 
-        fetch('assets/json/data.json') // Ganti dengan path yang benar
-          .then(response => {
-            if (!response.ok) {
-              throw new Error('Network response was not ok.');
-            }
-            return response.json();
-          })
-          .then(data => {
-            populateRecentOrders(data);
-          })
-          .catch(error => {
-            console.error('Error fetching or parsing data:', error);
-            tableBody.innerHTML = '<tr><td colspan="5">Failed to load recent orders.</td></tr>';
-          });
-      });
-
-      function populateRecentOrders(data) {
-        const tableBody = document.querySelector('#recentOrdersTable tbody');
-        tableBody.innerHTML = ''; // Clear existing rows
-
-        const recentOrders = data.slice(0, 5);
-
-        recentOrders.forEach(order => {
-          const row = tableBody.insertRow();
-          row.insertCell().textContent = order.transaction_id;
-          row.insertCell().textContent = order.transaction_date;
-          row.insertCell().textContent = order.store_location;
-          row.insertCell().textContent = order.product_detail || order.product_name || 'Unknown Product'; // Penanganan jika field product_detail atau product_name tidak ada
-          row.insertCell().textContent = `$${parseFloat(order.Revenue).toFixed(2)}`;
-        });
+  fetch('assets/json/data.json') // Ganti dengan path yang benar
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok.');
       }
+      return response.json();
+    })
+    .then(data => {
+      populateRecentOrders(data);
+    })
+    .catch(error => {
+      console.error('Error fetching or parsing data:', error);
+      tableBody.innerHTML = '<tr><td colspan="5">Failed to load recent orders.</td></tr>';
+    });
+});
+
+function populateRecentOrders(data) {
+  const tableBody = document.querySelector('#recentOrdersTable tbody');
+  tableBody.innerHTML = ''; // Clear existing rows
+
+  const recentOrders = data.slice(17990, 18000);
+
+  recentOrders.forEach(order => {
+    const row = tableBody.insertRow();
+    row.insertCell().textContent = order.transaction_id;
+    row.insertCell().textContent = order.transaction_date;
+    row.insertCell().textContent = order.store_location;
+    row.insertCell().textContent = order.product_detail || order.product_name || 'Unknown Product'; // Penanganan jika field product_detail atau product_name tidak ada
+    row.insertCell().textContent = `$${parseFloat(order.Revenue).toFixed(2)}`;
+  });
+}
