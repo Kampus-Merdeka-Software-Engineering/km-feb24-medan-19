@@ -136,7 +136,6 @@ const form = document.getElementById("formtanggal");
 const ctx2 = document.getElementById("chart-2").getContext("2d");
 const ctx3 = document.getElementById("chart-3").getContext("2d");
 const ctx4 = document.getElementById("chart-4").getContext("2d");
-const ctx5 = document.getElementById("chart-5").getContext("2d");
 
 
 let datajson = null
@@ -196,7 +195,7 @@ document.addEventListener('DOMContentLoaded', () => {
       //   ''
       // };
 
-      // 1. Menghitung Total Customer (Unique Customer)
+      // Menghitung Total Customer (Unique Customer)
       const totalCustomer = datajson.reduce((uniqueCustomers, currentTransaction) => {
         uniqueCustomers.add(currentTransaction.transaction_id);
         return uniqueCustomers;
@@ -204,6 +203,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const customerNumber = document.querySelector('.customer-number');
       customerNumber.textContent = totalCustomer;
+
+      // Menghitung Total Product Category 
+      const totalCategory = datajson.reduce((uniqueCategory, productCategory) => {
+        uniqueCategory.add(productCategory.product_category);
+        return uniqueCategory;
+      }, new Set()).size;
+
+      const productCategory = document.querySelector('.product-category');
+      productCategory.textContent = totalCategory;
+
+      // Menghitung Total Store
+      const totalStore = datajson.reduce((store, eachStore) => {
+        store.add(eachStore.store_id);
+        return store;
+      }, new Set()).size;
+
+      const eachStore = document.querySelector('.total-store');
+      eachStore.textContent = totalStore;
 
 
       // -------- Chart 2 -----------
