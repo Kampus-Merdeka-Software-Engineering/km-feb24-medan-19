@@ -258,6 +258,10 @@ body {
   border: 1px solid var(--blue);
 }
 
+.d-flex {
+  display: flex;
+}
+
 /* ================== Order Details List ============== */
 .details {
   position: relative;

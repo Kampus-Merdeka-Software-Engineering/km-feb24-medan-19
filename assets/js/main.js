@@ -136,6 +136,11 @@ const form = document.getElementById("formtanggal");
 const ctx2 = document.getElementById("chart-2").getContext("2d");
 const ctx3 = document.getElementById("chart-3").getContext("2d");
 const ctx4 = document.getElementById("chart-4").getContext("2d");
+const ctx5 = document.getElementById("chart-5").getContext("2d");
+const ctx6 = document.getElementById("chart-6").getContext("2d");
+const ctx7 = document.getElementById("chart-7").getContext("2d");
+const ctx8 = document.getElementById("chart-8").getContext("2d");
+
 
 
 let datajson = null
@@ -456,6 +461,246 @@ document.addEventListener('DOMContentLoaded', () => {
           scales: {
             y: {
               beginAtZero: true
+            }
+          }
+        }
+      });
+
+      // chart-5 Pie Chart (menampilkan jumlah pembelian pertipe produk )
+      tampilkangrafik1(datajson);
+
+      // Agregasi data berdasarkan product_type ketika product_category adalah "Coffee"
+      const coffeeProductType = datajson.reduce((acc, current) => {
+        // Periksa apakah product_category adalah "Coffee"
+        if (current.product_category === "Coffee") {
+          const productType = current.product_type;
+          // Jika productType belum ada di accumulator, inisialisasi dengan 0
+          acc[productType] = (acc[productType] || 0) + parseInt(current.transaction_qty); // Tambahkan transaction_qty
+        }
+        return acc;
+      }, {});
+
+      const myChart5 = new Chart(ctx5, {
+        type: "pie",
+        data: {
+          labels: Object.keys(coffeeProductType),
+          datasets: [
+            {
+              label: "Product Type",
+              data: Object.values(coffeeProductType),
+              backgroundColor: ["#6F798C", "#966C4D", "#C58C58"],
+            },
+          ],
+        },
+        options: {
+          plugins: {
+            datalabels: {
+              formatter: (value, ctx) => {
+                const total = ctx.dataset.data.reduce((a, b) => a + b, 0);
+                const percentage = ((value / total) * 100).toFixed(2) + '%';
+                return percentage;
+              },
+              color: 'white',
+              anchor: 'center',
+              align: 'center'
+            },
+            title: {
+              display: true,
+              text: 'Product Type Distribution for Coffee',
+              position: 'top',
+              font: { size: 16 },
+              padding: { top: 20, bottom: 10 }
+            },
+            tooltip: {
+              callbacks: {
+                label: (context) => {
+                  const label = context.label || '';
+                  const value = context.parsed;
+                  const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                  const percentage = ((value / total) * 100).toFixed(2) + '%';
+                  return `${label}: ${value} (${percentage})`;
+                }
+              }
+            }
+          }
+        }
+      });
+
+      // chart-6 Pie Chart (menampilkan jumlah pembelian pertipe produk )
+      tampilkangrafik1(datajson);
+
+      // Agregasi data berdasarkan product_type ketika product_category adalah "Coffee beans"
+      const coffeeBeansProductType = datajson.reduce((acc, current) => {
+        // Periksa apakah product_category adalah "Coffee beans"
+        if (current.product_category === "Coffee beans") {
+          const productType = current.product_type;
+          // Jika productType belum ada di accumulator, inisialisasi dengan 0
+          acc[productType] = (acc[productType] || 0) + parseInt(current.transaction_qty); // Tambahkan transaction_qty
+        }
+        return acc;
+      }, {});
+
+      const myChart6 = new Chart(ctx6, {
+        type: "pie",
+        data: {
+          labels: Object.keys(coffeeBeansProductType),
+          datasets: [
+            {
+              label: "Product Type",
+              data: Object.values(coffeeBeansProductType),
+              backgroundColor: ["#6F798C", "#966C4D", "#C58C58"],
+            },
+          ],
+        },
+        options: {
+          plugins: {
+            datalabels: {
+              formatter: (value, ctx) => {
+                const total = ctx.dataset.data.reduce((a, b) => a + b, 0);
+                const percentage = ((value / total) * 100).toFixed(2) + '%';
+                return percentage;
+              },
+              color: 'white',
+              anchor: 'center',
+              align: 'center'
+            },
+            title: {
+              display: true,
+              text: 'Product Type Distribution for Coffee Beans',
+              position: 'top',
+              font: { size: 16 },
+              padding: { top: 20, bottom: 10 }
+            },
+            tooltip: {
+              callbacks: {
+                label: (context) => {
+                  const label = context.label || '';
+                  const value = context.parsed;
+                  const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                  const percentage = ((value / total) * 100).toFixed(2) + '%';
+                  return `${label}: ${value} (${percentage})`;
+                }
+              }
+            }
+          }
+        }
+      });
+
+      // chart-7 Pie Chart (menampilkan jumlah pembelian pertipe produk )
+      tampilkangrafik1(datajson);
+
+      // Agregasi data berdasarkan product_type ketika product_category adalah "Loose Tea"
+      const teaProductType = datajson.reduce((acc, current) => {
+        // Periksa apakah product_category adalah "Loose Tea"
+        if (current.product_category === "Loose Tea") {
+          const productType = current.product_type;
+          // Jika productType belum ada di accumulator, inisialisasi dengan 0
+          acc[productType] = (acc[productType] || 0) + parseInt(current.transaction_qty); // Tambahkan transaction_qty
+        }
+        return acc;
+      }, {});
+
+      const myChart7 = new Chart(ctx7, {
+        type: "pie",
+        data: {
+          labels: Object.keys(teaProductType),
+          datasets: [
+            {
+              label: "Product Type",
+              data: Object.values(teaProductType),
+              backgroundColor: ["#6F798C", "#966C4D", "#C58C58"],
+            },
+          ],
+        },
+        options: {
+          plugins: {
+            datalabels: {
+              formatter: (value, ctx) => {
+                const total = ctx.dataset.data.reduce((a, b) => a + b, 0);
+                const percentage = ((value / total) * 100).toFixed(2) + '%';
+                return percentage;
+              },
+              color: 'white',
+              anchor: 'center',
+              align: 'center'
+            },
+            title: {
+              display: true,
+              text: 'Product Type Distribution for Loose Tea',
+              position: 'top',
+              font: { size: 16 },
+              padding: { top: 20, bottom: 10 }
+            },
+            tooltip: {
+              callbacks: {
+                label: (context) => {
+                  const label = context.label || '';
+                  const value = context.parsed;
+                  const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                  const percentage = ((value / total) * 100).toFixed(2) + '%';
+                  return `${label}: ${value} (${percentage})`;
+                }
+              }
+            }
+          }
+        }
+      });
+
+      // chart-8 Pie Chart (menampilkan jumlah pembelian pertipe produk )
+      tampilkangrafik1(datajson);
+
+      // Agregasi data berdasarkan product_type ketika product_category adalah "Packaged Chocolate"
+      const chocolateProductType = datajson.reduce((acc, current) => {
+        // Periksa apakah product_category adalah "Packaged Chocolate"
+        if (current.product_category === "Packaged Chocolate") {
+          const productType = current.product_type;
+          // Jika productType belum ada di accumulator, inisialisasi dengan 0
+          acc[productType] = (acc[productType] || 0) + parseInt(current.transaction_qty); // Tambahkan transaction_qty
+        }
+        return acc;
+      }, {});
+
+      const myChart8 = new Chart(ctx8, {
+        type: "pie",
+        data: {
+          labels: Object.keys(chocolateProductType),
+          datasets: [
+            {
+              label: "Product Type",
+              data: Object.values(chocolateProductType),
+              backgroundColor: ["#6F798C", "#966C4D", "#C58C58"],
+            },
+          ],
+        },
+        options: {
+          plugins: {
+            datalabels: {
+              formatter: (value, ctx) => {
+                const total = ctx.dataset.data.reduce((a, b) => a + b, 0);
+                const percentage = ((value / total) * 100).toFixed(2) + '%';
+                return percentage;
+              },
+              color: 'white',
+              anchor: 'center',
+              align: 'center'
+            },
+            title: {
+              display: true,
+              text: 'Product Type Distribution for Packaged Chocolate',
+              position: 'top',
+              font: { size: 16 },
+              padding: { top: 20, bottom: 10 }
+            },
+            tooltip: {
+              callbacks: {
+                label: (context) => {
+                  const label = context.label || '';
+                  const value = context.parsed;
+                  const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                  const percentage = ((value / total) * 100).toFixed(2) + '%';
+                  return `${label}: ${value} (${percentage})`;
+                }
+              }
             }
           }
         }
