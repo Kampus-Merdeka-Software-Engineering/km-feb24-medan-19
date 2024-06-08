@@ -541,7 +541,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }, {});
 
       const myChart6 = new Chart(ctx6, {
-        type: "pie",
+        type: "bar",
         data: {
           labels: Object.keys(coffeeBeansProductType),
           datasets: [
@@ -553,6 +553,8 @@ document.addEventListener('DOMContentLoaded', () => {
           ],
         },
         options: {
+          responsive: true,
+          maintainAspectRatio: false,
           plugins: {
             datalabels: {
               formatter: (value, ctx) => {
@@ -601,7 +603,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }, {});
 
       const myChart7 = new Chart(ctx7, {
-        type: "pie",
+        type: "doughnut",
         data: {
           labels: Object.keys(teaProductType),
           datasets: [
@@ -661,7 +663,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }, {});
 
       const myChart8 = new Chart(ctx8, {
-        type: "pie",
+        type: "polarArea",
         data: {
           labels: Object.keys(chocolateProductType),
           datasets: [
@@ -673,6 +675,8 @@ document.addEventListener('DOMContentLoaded', () => {
           ],
         },
         options: {
+          responsive: true,
+          maintainAspectRatio: false,
           plugins: {
             datalabels: {
               formatter: (value, ctx) => {
