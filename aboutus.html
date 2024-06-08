@@ -1,13 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap"
+      rel="stylesheet">
+    <link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="assets/img/icon.jpeg" type="image/x-icon">
     <style>
         body {
-            font-family: Arial, Helvetica, sans-serif;
+            font-family: 'Montserrat', sans-serif;
             margin: 0;
         }
 
@@ -21,24 +27,59 @@
             box-sizing: inherit;
         }
 
+        .row {
+            display: flex; /* Enable Flexbox for the row */
+            flex-wrap: wrap; /* Allow items to wrap to the next line */
+            justify-content: center; /* Center items horizontally */
+            gap: 20px; /* Atur jarak antar card */
+        }
+
         .column {
-            float: left;
-            width: 33.3%;
-            margin-bottom: 16px;
-            padding: 0 8px;
+            flex: 1 1 28%; /* Distribute available space equally among columns */
+            min-width: 250px; /* Minimal width setiap card agar konten tidak terpotong */
+            max-width: 300px; /* Limit maximum width of each column */
         }
 
         .card {
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-            margin: 8px;
+            display: flex;
+            flex-direction: column;
+            height: 100%; /* Penting untuk meratakan tinggi card */
+        }
+
+        .card img {
+            width: 100%;
+            height: 400px; 
+            object-fit: cover; 
+        }
+
+        .container {
+            padding: 16px;
+            flex-grow: 1; /* Membuat container mengisi sisa ruang vertikal di card */
         }
 
         .about-section {
             padding: 50px;
             text-align: center;
-            background-color: #474e5d;
+            background-image: linear-gradient(to right, #7a4d12, #dfaf97); /* Gradien warna */
             color: white;
         }
+
+        .about-section ul {
+          list-style: none; /* Menghilangkan bullet point bawaan */
+          padding: 0;
+          text-align: center; /* Mengatur rata tengah teks di dalam list */
+        }
+
+        .about-section li {
+            margin-bottom: 10px; /* Memberi jarak antar item list */
+        }
+
+        .about-section li i {
+            color: #d4af37; /* Warna emas untuk ikon */
+            margin-right: 5px;
+        }
+
 
         .container {
             padding: 0 16px;
@@ -56,20 +97,24 @@
         }
 
         .button {
-            border: none;
-            outline: 0;
-            display: inline-block;
-            padding: 8px;
-            color: white;
-            background-color: #000;
-            text-align: center;
-            cursor: pointer;
-            width: 100%;
+        background-image: linear-gradient(to right, #7a4d12, #dfaf97); /* Gradien warna */
+        color: white;
+        margin-top: 40px;
+        margin-bottom: 40px;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px; /* Sudut melengkung */
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Bayangan halus */
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-family: 'Montserrat', sans-serif; /* Transisi untuk efek hover */
         }
 
         .button:hover {
-            background-color: #555;
+            transform: translateY(-2px); /* Efek naik sedikit saat dihover */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Bayangan lebih tegas saat dihover */
         }
+
 
         @media screen and (max-width: 650px) {
             .column {
@@ -78,177 +123,178 @@
             }
         }
     </style>
-</head>
+  </head>
 
-<body>
+  <body>
     <div class="about-section">
-        <h1>Tentang Kami</h1>
-        <p>Dashboard Admin - Coffee Shop by GoonsCoffee Medan 19.</p>
-        <p>km-feb24-medan-19 created by GitHub Classroom | Front-End Source Code of Coffee Shop Sales - RevoU's Software Engineering Capstone Project</p>
-      </div>
-      
-      <h2 style="text-align:center">Tim Medan - 19</h2>
-      <div class="row">
-        <div class="column">
-          <div class="card">
-            <img src="/assets/img/agnes.jpeg" alt="Jane" style="width:100%">
-            <div class="container">
-              <h2>Agnes Djanus</h2>
-              <p class="title">CEO & Founder</p>
-              <p>Some text that describes me lorem ipsum ipsum lorem.</p>
-              <p>jane@example.com</p>
-              <p><button class="button">Contact</button></p>
-            </div>
-          </div>
-        </div>
-      
-        <div class="column">
-          <div class="card">
-            <img src="/assets/img/azmi.jpeg" alt="Mike" style="width:100%">
-            <div class="container">
-              <h2>Khaerul Azmi</h2>
-              <p class="title">Art Director</p>
-              <p>Some text that describes me lorem ipsum ipsum lorem.</p>
-              <p>mike@example.com</p>
-              <p><button class="button">Contact</button></p>
-            </div>
-          </div>
-        </div>
-      
-        <div class="column">
-            <div class="card">
-              <img src="/assets/img/fajar.jpeg" alt="Mike" style="width:100%">
-              <div class="container">
-                <h2>Fajar Hamzah Kosasih</h2>
-                <p class="title">Art Director</p>
-                <p>Some text that describes me lorem ipsum ipsum lorem.</p>
-                <p>mike@example.com</p>
-                <p><button class="button">Contact</button></p>
-              </div>
-            </div>
-          </div>
+      <h1><i class="fas fa-mug-hot"></i> Tentang Kami</h1>
+      <ul>
+        <li>Dashboard Admin - Coffee Shop by GoonsCoffee Medan 19.</li>
+        <li>
+          <i class="fab fa-github"></i>
+          <a href="https://github.com/km-feb24-medan-19"
+            target="_blank">km-feb24-medan-19</a> created by GitHub Classroom
+        </li>
+        <li>
+          <i class="fas fa-code"></i> Front-End Source Code of Coffee Shop Sales
+          <i class="fas fa-graduation-cap"></i> - RevoU's Software Engineering
+          Capstone Project
+        </li>
+      </ul>
+    </div>
 
-          <div class="column">
-            <div class="card">
-              <img src="/assets/img/afwa.jpeg" alt="Mike" style="width:100%">
-              <div class="container">
-                <h2>Afwa Izzul Ahsan</h2>
-                <p class="title">Art Director</p>
-                <p>Some text that describes me lorem ipsum ipsum lorem.</p>
-                <p>mike@example.com</p>
-                <p><button class="button">Contact</button></p>
-              </div>
-            </div>
-          </div>
-
-          <div class="column">
-            <div class="card">
-              <img src="/assets/img/chania.jpeg" alt="Mike" style="width:100%">
-              <div class="container">
-                <h2>Chania Angela Zamri</h2>
-                <p class="title">Art Director</p>
-                <p>Some text that describes me lorem ipsum ipsum lorem.</p>
-                <p>mike@example.com</p>
-                <p><button class="button">Contact</button></p>
-              </div>
-            </div>
-          </div>
-
-          <div class="column">
-            <div class="card">
-              <img src="/assets/img/firyal.png" alt="Mike" style="width:100%">
-              <div class="container">
-                <h2>Firyal Marsha Adella</h2>
-                <p class="title">Art Director</p>
-                <p>Some text that describes me lorem ipsum ipsum lorem.</p>
-                <p>mike@example.com</p>
-                <p><button class="button">Contact</button></p>
-              </div>
-            </div>
-          </div>
-
-          <div class="column">
-            <div class="card">
-              <img src="/assets/img/keysa.jpeg" alt="Mike" style="width:100%">
-              <div class="container">
-                <h2>Keysa Karisa</h2>
-                <p class="title">-</p>
-                <p>Some text that describes me lorem ipsum ipsum lorem.</p>
-                <p>mike@example.com</p>
-                <p><button class="button">Contact</button></p>
-              </div>
-            </div>
-          </div>
-
-          <div class="column">
-            <div class="card">
-              <img src="/assets/img/manda.jpeg" alt="Mike" style="width:100%">
-              <div class="container">
-                <h2>Mike Ross</h2>
-                <p class="title">Sakuntala Dwilania Mandayani</p>
-                <p>Some text that describes me lorem ipsum ipsum lorem.</p>
-                <p>mike@example.com</p>
-                <p><button class="button">Contact</button></p>
-              </div>
-            </div>
-          </div>
-
-          <div class="column">
-            <div class="card">
-              <img src="/assets/img/parid.jpeg" alt="Mike" style="width:100%">
-              <div class="container">
-                <h2>Mike Ross</h2>
-                <p class="title">Parid Saepudin</p>
-                <p>Some text that describes me lorem ipsum ipsum lorem.</p>
-                <p>mike@example.com</p>
-                <p><button class="button">Contact</button></p>
-              </div>
-            </div>
-          </div>
-
-          <div class="column">
-            <div class="card">
-              <img src="/assets/img/novita.jpeg" alt="Mike" style="width:100%">
-              <div class="container">
-                <h2>Mike Ross</h2>
-                <p class="title">Novita Adelin Br Lumbantobing</p>
-                <p>Some text that describes me lorem ipsum ipsum lorem.</p>
-                <p>mike@example.com</p>
-                <p><button class="button">Contact</button></p>
-              </div>
-            </div>
-          </div>
-
-          <div class="column">
-            <div class="card">
-              <img src="/assets/img/naurah.jpg" alt="Mike" style="width:100%">
-              <div class="container">
-                <h2>Mike Ross</h2>
-                <p class="title">Dzikra Naurah Nafisah</p>
-                <p>Some text that describes me lorem ipsum ipsum lorem.</p>
-                <p>mike@example.com</p>
-                <p><button class="button">Contact</button></p>
-              </div>
-            </div>
-          </div>
-        <div class="column">
-          <div class="card">
-            <img src="/assets/img/gloria.jpeg" alt="John" style="width:100%">
-            <div class="container">
-              <h2>John Doe</h2>
-              <p class="title">Gloria Angelica Abolla</p>
-              <p>Some text that describes me lorem ipsum ipsum lorem.</p>
-              <p>john@example.com</p>
-              <p><button class="button">Contact</button></p>
-            </div>
+    <h2 style="text-align:center">Tim Medan - 19</h2>
+    <div class="row">
+      <div class="column">
+        <div class="card">
+          <img src="/assets/img/agnes.jpeg" alt="Jane" style="width:100%">
+          <div class="container">
+            <h2>Agnes Djanus</h2>
+            <p class="title">CEO & Founder</p>
+            <p>Some text that describes me lorem ipsum ipsum lorem.</p>
+            <p>jane@example.com</p>
           </div>
         </div>
       </div>
-      <div class="container mt-5">
 
-        <p>Kembali <a href="/">Klik disini</a></p>
-
+      <div class="column">
+        <div class="card">
+          <img src="/assets/img/azmi.jpeg" alt="Mike" style="width:100%">
+          <div class="container">
+            <h2>Khaerul Azmi</h2>
+            <p class="title">Art Director</p>
+            <p>Some text that describes me lorem ipsum ipsum lorem.</p>
+            <p>mike@example.com</p>
+          </div>
         </div>
-</body>
+      </div>
+
+      <div class="column">
+        <div class="card">
+          <img src="/assets/img/fajar.jpeg" alt="Mike" style="width:100%">
+          <div class="container">
+            <h2>Fajar Hamzah Kosasih</h2>
+            <p class="title">Art Director</p>
+            <p>Some text that describes me lorem ipsum ipsum lorem.</p>
+            <p>mike@example.com</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="column">
+        <div class="card">
+          <img src="/assets/img/afwa.jpeg" alt="Mike" style="width:100%">
+          <div class="container">
+            <h2>Afwa Izzul Ahsan</h2>
+            <p class="title">Art Director</p>
+            <p>Some text that describes me lorem ipsum ipsum lorem.</p>
+            <p>mike@example.com</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="column">
+        <div class="card">
+          <img src="/assets/img/chania.jpeg" alt="Mike" style="width:100%">
+          <div class="container">
+            <h2>Chania Angela Zamri</h2>
+            <p class="title">Art Director</p>
+            <p>Some text that describes me lorem ipsum ipsum lorem.</p>
+            <p>mike@example.com</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="column">
+        <div class="card">
+          <img src="/assets/img/firyal.png" alt="Mike" style="width:100%">
+          <div class="container">
+            <h2>Firyal Marsha Adella</h2>
+            <p class="title">Art Director</p>
+            <p>Some text that describes me lorem ipsum ipsum lorem.</p>
+            <p>mike@example.com</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="column">
+        <div class="card">
+          <img src="/assets/img/keysa.jpeg" alt="Mike" style="width:100%">
+          <div class="container">
+            <h2>Keysa Karisa</h2>
+            <p class="title">-</p>
+            <p>Some text that describes me lorem ipsum ipsum lorem.</p>
+            <p>mike@example.com</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="column">
+        <div class="card">
+          <img src="/assets/img/manda.jpeg" alt="Mike" style="width:100%">
+          <div class="container">
+            <h2>Sakuntala Dwilania Mandayani</h2>
+            <p class="title">Sakuntala Dwilania Mandayani</p>
+            <p>Some text that describes me lorem ipsum ipsum lorem.</p>
+            <p>mike@example.com</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="column">
+        <div class="card">
+          <img src="/assets/img/parid.jpeg" alt="Mike" style="width:100%">
+          <div class="container">
+            <h2>Parid Saepudin</h2>
+            <p class="title">Parid Saepudin</p>
+            <p>Some text that describes me lorem ipsum ipsum lorem.</p>
+            <p>mike@example.com</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="column">
+        <div class="card">
+          <img src="/assets/img/novita.jpeg" alt="Mike" style="width:100%">
+          <div class="container">
+            <h2>Novita Adelin Br Lumbantobing</h2>
+            <p class="title">Novita Adelin Br Lumbantobing</p>
+            <p>Some text that describes me lorem ipsum ipsum lorem.</p>
+            <p>mike@example.com</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="column">
+        <div class="card">
+          <img src="/assets/img/naurah.jpg" alt="Mike" style="width:100%">
+          <div class="container">
+            <h2>Dzikra Naurah Nafisah</h2>
+            <p class="title">Dzikra Naurah Nafisah</p>
+            <p>Some text that describes me lorem ipsum ipsum lorem.</p>
+            <p>mike@example.com</p>
+          </div>
+        </div>
+      </div>
+      <div class="column">
+        <div class="card">
+          <img src="/assets/img/gloria.jpeg" alt="John" style="width:100%">
+          <div class="container">
+            <h2>Gloria Angelica Abolla</h2>
+            <p class="title">Gloria Angelica Abolla</p>
+            <p>Some text that describes me lorem ipsum ipsum lorem.</p>
+            <p>john@example.com</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container mt-5">
+
+      <button class="button" onclick="history.back()">
+        <i class="fas fa-arrow-left"></i> Kembali
+      </button>
+
+    </div>
+  </body>
 
 </html>

@@ -13,6 +13,7 @@
             rel="stylesheet">
         <link rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        <link rel="icon" href="assets/img/icon.jpeg" type="image/x-icon">
         <style>
         body {
         font-family: 'Montserrat', sans-serif; 
@@ -81,6 +82,23 @@
         max-width: 80px; /* Sesuaikan ukuran logo sesuai kebutuhan */
         margin-left: 10px;
         }
+
+        .button {
+        background-image: linear-gradient(to right, #7a4d12, #dfaf97); /* Gradien warna */
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px; /* Sudut melengkung */
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Bayangan halus */
+        cursor: pointer;
+        transition: all 0.3s ease; /* Transisi untuk efek hover */
+        }
+
+        .button:hover {
+            transform: translateY(-2px); /* Efek naik sedikit saat dihover */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Bayangan lebih tegas saat dihover */
+        }
+
     </style>
     </head>
     <body>
@@ -96,7 +114,10 @@
         </div>
         <div class="container mt-5">
 
-        <p>Kembali <a href="/">Klik disini</a></p>
+            <button class="button" onclick="history.back()">
+                <i class="fas fa-arrow-left"></i> Kembali 
+            </button>
+            
 
         </div>
 
