@@ -41,21 +41,47 @@
         }
 
         .card {
-            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-            display: flex;
-            flex-direction: column;
-            height: 100%; /* Penting untuk meratakan tinggi card */
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15); /* Bayangan lebih dramatis */
+            border-radius: 12px; /* Sudut melengkung */
+            overflow: hidden; /* Menyembunyikan overflow untuk efek hover */
+            transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transisi halus */
+            display: grid;
+            grid-template-rows: auto 1fr; 
+            height: 500px;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.2);
         }
 
         .card img {
-            width: 100%;
-            height: 400px; 
-            object-fit: cover; 
+        width: 100%; /* Penuhi lebar container */
+        height: 350px; /* Tetapkan tinggi gambar */
+        object-fit: cover; /* Agar gambar tetap proporsional dan mengisi ruang */
+        border-radius: 12px 12px 0 0; 
+        transition: transform 0.3s ease;
+        }
+
+        .card:hover img {
+            transform: scale(1.05); /* Memperbesar gambar saat dihover */
         }
 
         .container {
-            padding: 16px;
-            flex-grow: 1; /* Membuat container mengisi sisa ruang vertikal di card */
+            background-color: #fff; /* Latar belakang putih */
+            padding: 20px;
+            text-align: center;
+        }
+
+        .container h2 {
+            color: #333; /* Warna teks gelap */
+            margin-bottom: 5px;
+        }
+
+        .container p {
+            color: #777; /* Warna abu-abu */
+            font-size: 14px;
+            margin: 0;
         }
 
         .about-section {
@@ -282,6 +308,7 @@
             <h2>Gloria Angelica Abolla</h2>
             <p class="title">Universitas Pendidikan Indonesia</p>
             <p class="title">Matematika</p>
+
           </div>
         </div>
       </div>

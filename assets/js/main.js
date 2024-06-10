@@ -535,7 +535,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       });
 
-      // chart-6 Pie Chart (menampilkan jumlah pembelian pertipe produk )
+      // chart-6 Bar Chart (menampilkan jumlah pembelian pertipe produk )
       tampilkangrafik1(datajson);
 
       // Agregasi data berdasarkan product_type ketika product_category adalah "Coffee beans"
